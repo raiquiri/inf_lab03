@@ -1,8 +1,9 @@
-def bubble_sort(arr):
+def bubble_sort(arr, ascending=True):
     n = len(arr)
     for i in range(n):
         for j in range(0, n - i - 1):
-            if arr[j] > arr[j + 1]:
+            # Условие меняется в зависимости от выбранного направления сортировки
+            if (ascending and arr[j] > arr[j + 1]) or (not ascending and arr[j] < arr[j + 1]):
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
 
 def main():
@@ -15,8 +16,12 @@ def main():
         num = int(input(f"Введите число {i + 1}: "))
         numbers.append(num)
 
-    # Сортируем массив пузырьковым методом
-    bubble_sort(numbers)
+    # Запрашиваем направление сортировки
+    direction = input("Введите направление сортировки (введите 'возрастание' или 'убывание'): ").strip().lower()
+    ascending = True if direction == "возрастание" else False
+
+    # Сортируем массив пузырьковым методом в выбранном направлении
+    bubble_sort(numbers, ascending)
 
     # Выводим отсортированный список
     print("Отсортированные числа:", numbers)
